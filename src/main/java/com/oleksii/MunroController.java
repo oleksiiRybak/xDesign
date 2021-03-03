@@ -24,8 +24,8 @@ public class MunroController {
 	String allMarvelCharacters() 
 				 throws NoSuchAlgorithmException, 
 				 FileNotFoundException, IOException, CsvException {		
-		String tt = "";
-		MunroCsvEngine.processCsv();
+		
+		List<Munro> munroList = MunroCsvEngine.processCsv();
 		//List<String> recordingArr = marvelConnector.fetchAllRecords();
 				
 	  return "Lolo";

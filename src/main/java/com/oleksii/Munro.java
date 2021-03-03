@@ -1,6 +1,7 @@
 package com.oleksii;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class Munro {
 	
@@ -10,9 +11,9 @@ public class Munro {
 	
 	
 	public Munro(String name, BigDecimal heightInM, String munroType) {
-		this.name = name;
-		this.heightInM = heightInM;
-		this.munroType = munroType;
+		this.name = Objects.requireNonNull(name);
+		this.heightInM = Objects.requireNonNull(heightInM);
+		this.munroType = Objects.requireNonNull(munroType);
 	}
 	
 	public String getName() {
