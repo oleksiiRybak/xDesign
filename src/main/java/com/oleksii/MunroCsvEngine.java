@@ -18,15 +18,12 @@ public class MunroCsvEngine {
 		try (CSVReader reader = new CSVReader(new FileReader("munrotab_test.csv"))) {
 		      List<String[]> r = reader.readAll();
 		      
-		      //List<String[]> munroArr = r.stream().filter(munroArr -> munroArr[10] != null);
-		      //System.out.println(Arrays.toString(r.get(0)));
-		      
-		      //r.forEach(x -> System.out.println(Arrays.toString(x)));
-		      r.stream().skip(1).filter(munroData -> munroData[10] != null).forEach(munroArr -> {
-		    	  Munro munro = createMunro(munroArr);
-		    	  munroList.add(munro);
-		      });
-		  }
+		      r.stream().skip(1).filter(munroData -> munroData[0] != null && !"".equals(munroData[0]))
+		      			.forEach(munroArr -> {
+				    	  Munro munro = createMunro(munroArr);
+				    	  munroList.add(munro);
+		      			});
+		}
 		return munroList;
 	}
 	
