@@ -14,6 +14,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.google.gson.Gson;
 import com.opencsv.exceptions.CsvException;
+import javax.ws.rs.QueryParam;
 
 @RestController
 public class MunroController {
@@ -21,11 +22,12 @@ public class MunroController {
 	
 	@GetMapping(path="/characters", produces="application/json")	
 	//List<String> allMarvelCharacters() 
-	String allMarvelCharacters() 
+	String allMarvelCharacters(@QueryParam("hillCat") String hillCategory) 
 				 throws NoSuchAlgorithmException, 
 				 FileNotFoundException, IOException, CsvException {		
 		
 		List<Munro> munroList = MunroCsvEngine.processCsv();
+		MunroSearchEngine searchEngine = new MunroSearchEngine(munroList);
 		//List<String> recordingArr = marvelConnector.fetchAllRecords();
 				
 	  return "Lolo";
