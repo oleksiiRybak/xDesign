@@ -14,6 +14,7 @@ public class Munro {
 		this.name = Objects.requireNonNull(name);
 		this.heightInM = Objects.requireNonNull(heightInM);
 		this.munroType = Objects.requireNonNull(munroType);
+			
 	}
 	
 	public String getName() {

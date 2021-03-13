@@ -20,18 +20,29 @@ import javax.ws.rs.QueryParam;
 public class MunroController {
 
 	
-	@GetMapping(path="/characters", produces="application/json")	
+	@GetMapping(path="/hillCategory", produces="application/json")	
 	//List<String> allMarvelCharacters() 
-	String allMarvelCharacters(@QueryParam("hillCat") String hillCategory) 
+	List filterByHillCategory(@QueryParam("hillCat") String hillCategory) 
 				 throws NoSuchAlgorithmException, 
 				 FileNotFoundException, IOException, CsvException {		
 		
 		List<Munro> munroList = MunroCsvEngine.processCsv();
 		MunroSearchEngine searchEngine = new MunroSearchEngine(munroList);
+		List<Munro> resultMunroList = searchEngine.filterBy(hillCategory);
 		//List<String> recordingArr = marvelConnector.fetchAllRecords();
 				
-	  return "Lolo";
+	  return resultMunroList;
 	}
+	
+	
+	@GetMapping(path="/sort", produces="application/json")	
+	//List<String> allMarvelCharacters() 
+	List sortByHeightAndName(@QueryParam("hillCat") String hillCategory) 
+				 throws NoSuchAlgorithmException, 
+				 FileNotFoundException, IOException, CsvException {	
+		
+	}
+	
 		
 	 @GetMapping(path="/characters/{id}", produces="application/json")
 	 String one(@PathVariable String id) { 
