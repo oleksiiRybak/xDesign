@@ -14,6 +14,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.google.gson.Gson;
 import com.opencsv.exceptions.CsvException;
+
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.QueryParam;
 
 @RestController
@@ -22,16 +24,39 @@ public class MunroController {
 	
 	@GetMapping(path="/hillCategory", produces="application/json")	
 	//List<String> allMarvelCharacters() 
-	List filterByHillCategory(@QueryParam("hillCat") String hillCategory) 
-				 throws NoSuchAlgorithmException, 
-				 FileNotFoundException, IOException, CsvException {		
+	List filterByHillCategory(@QueryParam("hillCat") String hillCategory,
+							  @QueryParam("sortByNameAsc") @DefaultValue("true") boolean sortByNameAsc,
+							  @QueryParam("sortByHeightAsc") @DefaultValue("true") boolean sortByHeightAsc) 
+							  throws NoSuchAlgorithmException, 
+							  FileNotFoundException, IOException, CsvException {		
 		
-		List<Munro> munroList = MunroCsvEngine.processCsv();
-		MunroSearchEngine searchEngine = new MunroSearchEngine(munroList);
-		List<Munro> resultMunroList = searchEngine.filterBy(hillCategory);
+		MunroSearchEngine searchEngine = dataInSearchEngine();
+		searchEngine.filterBy(hillCategory);
+		searchEngine.sortByHeightAndName(sortByNameAsc, sortByHeightAsc);
 		//List<String> recordingArr = marvelConnector.fetchAllRecords();
-				
-	  return resultMunroList;
+		
+	  return searchEngine.getMunroDataResult();
+	}
+	
+	/*
+	 * @GetMapping(path="/hillCategorySorted", produces="application/json")
+	 * //List<String> allMarvelCharacters() List
+	 * filterByHillCategory(@QueryParam("hillCat") String hillCategory,
+	 * 
+	 * @QueryParam("sortByNameAsc") boolean sortByNameAsc,
+	 * 
+	 * @QueryParam("sortByHeightAsc") boolean sortByHeightAsc) throws
+	 * NoSuchAlgorithmException, FileNotFoundException, IOException, CsvException {
+	 * MunroSearchEngine searchEngine = dataInSearchEngine(); //List<Munro>
+	 * resultMunroList = searchEngine.filterBy(hillCategory);
+	 * 
+	 * 
+	 * return null; }
+	 */
+
+	protected MunroSearchEngine dataInSearchEngine() throws FileNotFoundException, IOException, CsvException {
+		List<Munro> munroList = MunroCsvEngine.processCsv();
+		return new MunroSearchEngine(munroList);		
 	}
 	
 	
@@ -40,7 +65,7 @@ public class MunroController {
 	List sortByHeightAndName(@QueryParam("hillCat") String hillCategory) 
 				 throws NoSuchAlgorithmException, 
 				 FileNotFoundException, IOException, CsvException {	
-		
+		return null;
 	}
 	
 		
