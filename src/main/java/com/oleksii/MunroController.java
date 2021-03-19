@@ -24,7 +24,7 @@ public class MunroController {
 	
 	@GetMapping(path="/hillCategory", produces="application/json")	
 	//List<String> allMarvelCharacters() 
-	List filterByHillCategory(@QueryParam("hillCat") String hillCategory,
+	List filterByHillCategory(@QueryParam("hillCategory") @DefaultValue("") String hillCategory,
 							  @QueryParam("sortByNameAsc") @DefaultValue("true") boolean sortByNameAsc,
 							  @QueryParam("sortByHeightAsc") @DefaultValue("true") boolean sortByHeightAsc) 
 							  throws NoSuchAlgorithmException, 
