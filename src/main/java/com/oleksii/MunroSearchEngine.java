@@ -56,6 +56,15 @@ public class MunroSearchEngine implements SearchEngine<Munro, String> {
 						        .collect(Collectors.toList());
 		
 	}
+
+
+	public void limitResults(Integer limit) {
+		if(limit > 0) {
+			this.munroDataSource = munroDataSource.stream().limit(limit).collect(Collectors.toList());
+		}
+		
+		
+	}
 	
 	
 	

@@ -55,8 +55,8 @@ class MunroSearchEngineTest {
 		MunroSearchEngine munroSearchEngine = new MunroSearchEngine(prepareMunroList());
 		boolean sortByNameAsc = true;
 		boolean sortByHeightAsc = true;
-		BigDecimal lowestMunro = new BigDecimal(900.0);
-		BigDecimal highestMunro = new BigDecimal(900.0);
+		//BigDecimal lowestMunro = new BigDecimal(900.0);
+		//BigDecimal highestMunro = new BigDecimal(900.0);
 		
 		munroSearchEngine.sortByHeightAndName(sortByNameAsc, sortByHeightAsc);		
 		
@@ -73,6 +73,33 @@ class MunroSearchEngineTest {
 		
 		assertEquals(4, munroSearchEngine.getMunroDataResult().size());
 		assertTrue(munroType.equals(munroSearchEngine.getMunroDataResult().get(0).munroType));
+	}
+	
+	@Test
+	void testMunroLimit1() {
+		MunroSearchEngine munroSearchEngine = new MunroSearchEngine(prepareMunroList());
+		int recordsLimit = 1;
+		munroSearchEngine.limitResults(recordsLimit);
+				
+		assertEquals(recordsLimit, munroSearchEngine.getMunroDataResult().size());
+	}
+	
+	@Test
+	void testMunroLimit3() {
+		MunroSearchEngine munroSearchEngine = new MunroSearchEngine(prepareMunroList());
+		int recordsLimit = 3;
+		munroSearchEngine.limitResults(recordsLimit);
+				
+		assertEquals(recordsLimit, munroSearchEngine.getMunroDataResult().size());
+	}
+	
+	@Test
+	void testMunroNoLimit() {
+		MunroSearchEngine munroSearchEngine = new MunroSearchEngine(prepareMunroList());
+		int recordsNoLimit = 0;
+		munroSearchEngine.limitResults(recordsNoLimit);
+				
+		assertEquals(7, munroSearchEngine.getMunroDataResult().size());
 	}
 	
 	

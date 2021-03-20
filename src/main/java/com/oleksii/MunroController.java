@@ -22,17 +22,22 @@ import javax.ws.rs.QueryParam;
 public class MunroController {
 
 	
-	@GetMapping(path="/hillCategory", produces="application/json")	
+	@GetMapping(path="/munroHills", produces="application/json")	
 	//List<String> allMarvelCharacters() 
 	List filterByHillCategory(@QueryParam("hillCategory") @DefaultValue("") String hillCategory,
 							  @QueryParam("sortByNameAsc") @DefaultValue("true") boolean sortByNameAsc,
-							  @QueryParam("sortByHeightAsc") @DefaultValue("true") boolean sortByHeightAsc) 
+							  @QueryParam("sortByHeightAsc") @DefaultValue("true") boolean sortByHeightAsc,
+							  @QueryParam("limit") @DefaultValue("") String limit) 
 							  throws NoSuchAlgorithmException, 
 							  FileNotFoundException, IOException, CsvException {		
 		
 		MunroSearchEngine searchEngine = dataInSearchEngine();
 		searchEngine.filterBy(hillCategory);
-		searchEngine.sortByHeightAndName(sortByNameAsc, sortByHeightAsc);
+		searchEngine.sortByHeightAndName(sortByNameAsc, sortByHeightAsc);		
+		if(limit == null) {
+			limit = "0";
+		}
+		searchEngine.limitResults(Integer.parseInt(limit));
 		//List<String> recordingArr = marvelConnector.fetchAllRecords();
 		
 	  return searchEngine.getMunroDataResult();
