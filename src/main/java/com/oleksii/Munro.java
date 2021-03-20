@@ -5,25 +5,26 @@ import java.util.Objects;
 
 public class Munro {
 	
-	String name;	
-	BigDecimal heightInM;
-	String munroType;
+	private String name;	
+	private BigDecimal heightInM;
+	private String munroType;
+	private String gridRef;
 	
 	
-	public Munro(String name, BigDecimal heightInM, String munroType) {
+	public Munro(String name, BigDecimal heightInM, String gridRef, String munroType) {
 		this.name = Objects.requireNonNull(name);
 		this.heightInM = Objects.requireNonNull(heightInM);
 		this.munroType = Objects.requireNonNull(munroType);
+		this.gridRef = Objects.requireNonNull(gridRef);
 			
 	}
 	
 	public String getName() {
 		return name;
 	}
-
-
-	public void setName(String name) {
-		this.name = name;
+	
+	public String getGrifRef() {
+		return gridRef;
 	}
 
 
@@ -32,20 +33,9 @@ public class Munro {
 	}
 
 
-	public void setHeightInM(BigDecimal heightInM) {
-		this.heightInM = heightInM;
-	}
-
-
 	public String getMunroType() {
 		return munroType;
 	}
-
-
-	public void setMunroType(String munroType) {
-		this.munroType = munroType;
-	}
-
 
 
 }

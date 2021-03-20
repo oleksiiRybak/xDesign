@@ -15,7 +15,7 @@ public class MunroCsvEngine {
 	
 	public static List<Munro> processCsv() throws FileNotFoundException, IOException, CsvException {
 		List<Munro> munroList = new ArrayList<>();
-		try (CSVReader reader = new CSVReader(new FileReader("munrotab_test.csv"))) {
+		try (CSVReader reader = new CSVReader(new FileReader("munrotab_v6.2.csv"))) {
 		      List<String[]> r = reader.readAll();
 		      
 		      r.stream().skip(1).filter(munroData -> munroData[0] != null && !"".equals(munroData[0]))
@@ -28,7 +28,7 @@ public class MunroCsvEngine {
 	}
 	
 	public static Munro createMunro(String[] munroArr) {
-		return new Munro(munroArr[5], new BigDecimal(munroArr[10]), munroArr[27]);
+		return new Munro(munroArr[5], new BigDecimal(munroArr[10]), munroArr[13], munroArr[27]);
 	}
 
 }

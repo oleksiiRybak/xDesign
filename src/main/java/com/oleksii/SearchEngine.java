@@ -1,9 +1,12 @@
 package com.oleksii;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
-public interface SearchEngine<E, N> {
+public interface SearchEngine<E,N> {
 	
-	void filterBy(N filterParam); 
-
+	void filterBy(Optional<N> filterParam); 	
+	void limitResults(Optional<N> limit);
+	
 }
