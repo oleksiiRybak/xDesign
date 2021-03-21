@@ -1,4 +1,4 @@
-package com.oleksii;
+package com.oleksii.munroservice.domain.webservice;
 
 import java.math.BigDecimal;
 import java.util.Comparator;
@@ -7,6 +7,8 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+
+import com.oleksii.munroservice.domain.Munro;
 
 public class MunroSearchEngine implements SearchEngine<Munro, String> {
 	

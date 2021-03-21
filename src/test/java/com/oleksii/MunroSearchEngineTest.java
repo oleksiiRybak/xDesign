@@ -10,7 +10,10 @@ import java.util.Optional;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import com.oleksii.MunroSearchEngine;
+
+import com.oleksii.munroservice.domain.Munro;
+import com.oleksii.munroservice.domain.webservice.MunroSearchEngine;
+import com.oleksii.munroservice.domain.webservice.SearchEngine;
 
 class MunroSearchEngineTest {
 	

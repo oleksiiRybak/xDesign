@@ -1,4 +1,4 @@
-package com.oleksii;
+package com.oleksii.munroservice.domain.webservice;
 
 import java.math.BigDecimal;
 import java.util.List;

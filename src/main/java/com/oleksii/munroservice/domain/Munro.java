@@ -1,4 +1,4 @@
-package com.oleksii;
+package com.oleksii.munroservice.domain;
 
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -36,6 +36,5 @@ public class Munro {
 	public String getMunroType() {
 		return munroType;
 	}
-
 
 }

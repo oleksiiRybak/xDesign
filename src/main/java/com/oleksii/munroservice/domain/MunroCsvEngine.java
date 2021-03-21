@@ -1,4 +1,4 @@
-package com.oleksii;
+package com.oleksii.munroservice.domain;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

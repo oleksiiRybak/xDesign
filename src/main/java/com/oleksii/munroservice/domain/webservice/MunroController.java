@@ -1,4 +1,4 @@
-package com.oleksii;
+package com.oleksii.munroservice.domain.webservice;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.google.gson.Gson;
+import com.oleksii.munroservice.domain.Munro;
+import com.oleksii.munroservice.domain.MunroCsvEngine;
 import com.opencsv.exceptions.CsvException;
 
 import javax.ws.rs.DefaultValue;
@@ -24,8 +26,7 @@ import javax.ws.rs.QueryParam;
 public class MunroController {
 
 	
-	@GetMapping(path="/munroHills", produces="application/json")	
-	//List<String> allMarvelCharacters() 
+	@GetMapping(path="/munroHills", produces="application/json")		
 	List filterByHillCategory(@QueryParam("hillCategory") @DefaultValue("") String hillCategory,
 							  @QueryParam("sortByNameAsc") @DefaultValue("true") boolean sortByNameAsc,
 							  @QueryParam("sortByHeightAsc") @DefaultValue("true") boolean sortByHeightAsc,
@@ -40,50 +41,14 @@ public class MunroController {
 		searchEngine.filterByMinMaxHeight(Optional.ofNullable(minHeight), Optional.ofNullable(maxHeight));		
 		searchEngine.sortByHeightAndName(sortByNameAsc, sortByHeightAsc);		
 		
-		searchEngine.limitResults(Optional.ofNullable(limit));
-		//List<String> recordingArr = marvelConnector.fetchAllRecords();
+		searchEngine.limitResults(Optional.ofNullable(limit));		
 		
 	  return searchEngine.getMunroDataResult();
 	}
 	
-	/*
-	 * @GetMapping(path="/hillCategorySorted", produces="application/json")
-	 * //List<String> allMarvelCharacters() List
-	 * filterByHillCategory(@QueryParam("hillCat") String hillCategory,
-	 * 
-	 * @QueryParam("sortByNameAsc") boolean sortByNameAsc,
-	 * 
-	 * @QueryParam("sortByHeightAsc") boolean sortByHeightAsc) throws
-	 * NoSuchAlgorithmException, FileNotFoundException, IOException, CsvException {
-	 * MunroSearchEngine searchEngine = dataInSearchEngine(); //List<Munro>
-	 * resultMunroList = searchEngine.filterBy(hillCategory);
-	 * 
-	 * 
-	 * return null; }
-	 */
-
 	protected MunroSearchEngine dataInSearchEngine() throws FileNotFoundException, IOException, CsvException {
 		List<Munro> munroList = MunroCsvEngine.processCsv();
 		return new MunroSearchEngine(munroList);		
 	}
-	
-	
-	@GetMapping(path="/sort", produces="application/json")	
-	//List<String> allMarvelCharacters() 
-	List sortByHeightAndName(@QueryParam("hillCat") String hillCategory) 
-				 throws NoSuchAlgorithmException, 
-				 FileNotFoundException, IOException, CsvException {	
-		return null;
-	}
-	
-		
-	 @GetMapping(path="/characters/{id}", produces="application/json")
-	 String one(@PathVariable String id) { 
-		 //Character marvelCharacter = marvelConnector.fetchRecordById(id);
-		 Gson gson = new Gson();		 
-		 //String marvelCharacterJson = gson.toJson(marvelCharacter);
-
-		 return "Polo"; 
-	 }
 	
 }
