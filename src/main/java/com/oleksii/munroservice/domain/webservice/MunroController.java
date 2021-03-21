@@ -19,11 +19,15 @@ import com.oleksii.munroservice.domain.Munro;
 import com.oleksii.munroservice.domain.MunroCsvEngine;
 import com.opencsv.exceptions.CsvException;
 
+import javax.inject.Inject;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.QueryParam;
 
 @RestController
 public class MunroController {
+	
+	@Inject
+    private MunroSearchEngine munroSearchEngine;
 
 	
 	@GetMapping(path="/munroHills", produces="application/json")		

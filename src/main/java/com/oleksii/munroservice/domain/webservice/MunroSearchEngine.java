@@ -8,8 +8,11 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Component;
+
 import com.oleksii.munroservice.domain.Munro;
 
+@Component
 public class MunroSearchEngine implements SearchEngine<Munro, String> {
 	
 	private List<Munro> munroDataSource;

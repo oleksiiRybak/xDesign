@@ -3,7 +3,7 @@ package com.oleksii.munroservice.domain;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class Munro {
+public final class Munro {
 	
 	private String name;	
 	private BigDecimal heightInM;
